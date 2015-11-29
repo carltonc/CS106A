@@ -1,0 +1,57 @@
+/*
+ * This program will accept an entry from the user, check if it is an actual number, and if it is an actual number it will
+ * add commas in appropriate places. 
+ */
+
+import acm.program.*;
+
+public class AddingCommas extends ConsoleProgram	{
+	
+	public void run()	{
+		while (true)	{
+			String digits = readLine("Enter a number: ");
+		
+			if (validateEntry(digits))	{
+				println(addCommasToNumericString(digits));
+			}	else	{
+				println("\"" + digits + "\"" + " is not a valid entry. Please enter a new number.");
+			}
+		}
+	}
+	
+	/*
+	 * this method will accept a string, and decide if it is an actual number (eg contains no characters)
+	 */
+	private Boolean validateEntry(String digits)	{
+		for (int i = 0; i < digits.length(); i++)	{
+			if (!Character.isDigit(digits.charAt(i)))	{
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/* 
+	 * this method will accept a string, and return a string with commas in the necessary places 
+	 * pre-conditon: user entry must be an actual number (no characters)
+	 */
+	private String addCommasToNumericString(String digits)	{
+		String result = "";
+		
+		//this starts at the end (right-most character) and counts to the front, adding a comma every three digits.
+		for (int i = 1; i <= digits.length(); i++)	{
+			
+			//if loop booleans check if the current number is 3rd/6th/9th etc. from right and that it is not the right-most digit
+			//will add number and then comma if conditions are met
+			//otherwise it will just add the number
+			if (((digits.length() - i) % 3 == 0) && ((digits.length() - i) != 0))	{
+				result += digits.charAt(i-1);
+				result += ",";
+			}	else	{
+				result += digits.charAt(i-1);
+			}
+		}
+		
+		return result;
+	}
+}
