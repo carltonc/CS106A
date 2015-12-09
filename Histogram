@@ -1,0 +1,73 @@
+/*
+ * 
+ */
+
+import acm.program.*;
+import acm.util.*;
+import java.io.*;
+
+public class Histogram extends ConsoleProgram	{
+
+	private static final String HISTOGRAM_ICON = "*";
+	
+	/* Instance variables */
+	private BufferedReader rd;
+	private String zero9 = "";
+	private String ten19 = "";
+	private String twenty29 = "";
+	private String thirty39 = "";
+	private String forty49 = "";
+	private String fifty59 = "";
+	private String sixty69 = "";
+	private String seventy79 = "";
+	private String eighty89 = "";
+	private String ninety99 = "";
+	private String oneHundred = "";
+	
+	public void run()	{
+		readFile();
+		printResults();
+	}
+	
+	private void readFile()		{
+		try	{
+			rd = new BufferedReader(new FileReader("HistogramScores.txt"));
+			while (true)	{
+				String line = rd.readLine();
+				if (line == null) break;
+				int value = Integer.parseInt(line);
+				
+				//sorts values
+				if (value < 0 || value > 100)	throw new ErrorException("Score out of range.");
+				if (value >= 0 && value <= 9) zero9 += HISTOGRAM_ICON;
+				else if (value >= 10 && value <= 19) ten19 += HISTOGRAM_ICON;
+				else if (value >= 20 && value <= 29) twenty29 += HISTOGRAM_ICON;
+				else if (value >= 30 && value <= 39) thirty39 += HISTOGRAM_ICON;
+				else if (value >= 40 && value <= 49) forty49 += HISTOGRAM_ICON;
+				
+				else if (value >= 50 && value <= 59) fifty59 += HISTOGRAM_ICON;
+				else if (value >= 60 && value <= 69) sixty69 += HISTOGRAM_ICON;
+				else if (value >= 70 && value <= 79) seventy79 += HISTOGRAM_ICON;
+				else if (value >= 80 && value <= 89) eighty89 += HISTOGRAM_ICON;
+				else if (value >= 90 && value <= 99) ninety99 += HISTOGRAM_ICON;
+				else if (value == 100) oneHundred += HISTOGRAM_ICON;
+			}
+		}	catch (IOException ex)	{
+			throw new ErrorException(ex);
+		}
+	}
+	
+	private void printResults()		{
+		println("00-09: " + zero9);
+		println("10-19: " + ten19);
+		println("20-29: " + twenty29);
+		println("30-39: " + thirty39);
+		println("40-49: " + forty49);
+		println("50-59: " + fifty59);
+		println("60-69: " + sixty69);
+		println("70-79: " + seventy79);
+		println("80-89: " + eighty89);
+		println("90-99: " + ninety99);
+		println("  100: " + oneHundred);
+	}
+}
