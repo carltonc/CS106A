@@ -1,0 +1,34 @@
+/*
+ * This program will accept a string from the user, accept a character from the user, and remove all instances
+ * of that character from the string.
+ */
+
+import acm.program.*;
+
+public class DeletingCharacters extends ConsoleProgram	{
+	
+	public void run()	{
+		while (true)	{
+			String entry = readLine("Enter a string: ");
+			String removeEntry = "";
+			while (true)	{
+				removeEntry = readLine("Enter the character you would like to remove from the string: ");
+				if (removeEntry.length() != 1)	{
+					println("Please enter only a single character.");
+				}	else break;
+			}
+			char remove = removeEntry.charAt(0);
+			println(removeAllOccurences(entry, remove));
+		}
+	}
+	
+	public String removeAllOccurences(String entry, char remove)	{
+		String result = "";
+		for (int i = 0; i < entry.length(); i++)	{
+			if (entry.charAt(i) != remove)	{
+				result += entry.charAt(i);
+			}
+		}
+		return result;
+	}
+}
