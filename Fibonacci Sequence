@@ -1,0 +1,53 @@
+* This program will calculate and display the Fibonacci Sequence
+ * up to a specified value (MAX_TERM_VALUE)
+ */
+
+import acm.program.*;
+
+public class FibonacciSequence extends ConsoleProgram {
+	
+	private static final int MAX_TERM_VALUE = 10000;
+	
+	public void run()	{
+		println("This program lists the Fibonacci Sequence");
+		runFibSeq();
+	}
+	
+	private void runFibSeq()	{
+		
+		//second most recent "printVar"
+		int previousVarOld = 0;
+		
+		//displays Fib(1)
+		println(previousVarOld);
+		
+		//most recent "printVar"
+		int previousVarRecent = 1;
+		
+		//displays Fib(2)
+		println(previousVarRecent);
+		
+		//this is what is displayed as the next Fibonacci term
+		int printVar = 0;
+		
+		fibSeqWhileLoop(previousVarOld, previousVarRecent, printVar);
+	}
+	
+	//pre-condition: must receive the three variables
+	private void fibSeqWhileLoop(int previousVarOld, int previousVarRecent, int printVar)	{
+		while (true)	{
+			printVar = previousVarOld + previousVarRecent;
+			
+			//ensures the value to be displayed is before the max value
+			if (printVar > MAX_TERM_VALUE) break;
+			
+			println(printVar);
+			
+			//the most recent value moves to the second oldest
+			previousVarOld = previousVarRecent;
+			
+			//the value just displayed moves to the most recent value
+			previousVarRecent = printVar;
+		}
+	}
+}
