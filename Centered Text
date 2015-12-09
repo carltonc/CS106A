@@ -1,0 +1,21 @@
+import acm.graphics.*;
+import acm.program.*;
+
+/*
+ * This program will create a GLabel that is centered horizontally
+ * and vertically in the middle of the graphics window
+ */
+public class CenteredText extends GraphicsProgram{
+	public void run()	{
+		GLabel label = new GLabel("CS106A rocks!");
+		label.setFont("SansSerif-28");
+		
+		//centers it horizontally, takes label width into account
+		double xcoordinate = getWidth()/2 - label.getWidth()/2;
+		
+		//centers it vertically, takes label height into account
+		double ycoordinate = getHeight()/2 +label.getAscent()/2;
+		
+		add(label, xcoordinate, ycoordinate);
+	}
+}
