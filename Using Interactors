@@ -1,0 +1,68 @@
+/*
+ * 
+ */
+
+import acm.graphics.*;
+import acm.program.*;
+import java.util.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class UsingInteractors extends GraphicsProgram	{
+
+	private static final double BOX_WIDTH = 120;
+	private static final double BOX_HEIGHT = 50;
+	private static final int MAX_FONT_NAME = 30;
+	
+	private JTextField fontField;
+	private JLabel nameLabel;
+	private JButton addButton;
+	private JButton removeButton;
+	private JButton clearButton;
+	private Map<String, GObject> boxes;
+	private String name;
+	
+	public void init()	{
+		boxes = new HashMap<String, GObject>();
+		createController();
+		addActionListeners();
+	}
+	
+	private void createController()	{
+		fontField = new JTextField(MAX_FONT_NAME);
+		fontField.addActionListener(this);
+		nameLabel = new JLabel("Name");
+		add(nameLabel, SOUTH);
+		add(fontField, SOUTH);
+		addButton = new JButton("Add");
+		add(addButton, SOUTH);
+		removeButton = new JButton("Remove");
+		add(removeButton, SOUTH);
+		clearButton = new JButton("Clear");
+		add(clearButton, SOUTH);
+	}
+	
+	public void actionPerformed(ActionEvent e)	{
+		if (e.getActionCommand().equals("Add"))	{
+			addBox();
+		}
+		if (e.getActionCommand().equals("Clear"))	{
+			clearBoxes();
+		}
+	}
+	
+	private void addBox()	{
+		GCompound box = new GCompound();
+		GRect rect = new GRect(BOX_WIDTH, BOX_HEIGHT);
+		box.add(rect, -BOX_WIDTH/2, -BOX_HEIGHT/2);
+		GLabel label = new GLabel(fontField.getText());
+		name = fontField.getText();
+		box.add(label, -label.getWidth(), label.getAscent());
+		add(box, getWidth()/2, getHeight()/2);
+		boxes.put(name, box);
+	}
+	
+	private void clearBoxes()	{
+		
+	}
+}
