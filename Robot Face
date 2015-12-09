@@ -1,0 +1,57 @@
+/*
+ * This program will build the face of a robot
+ */
+
+import acm.graphics.*;
+import acm.program.*;
+import java.awt.*;
+
+public class RobotFace extends GraphicsProgram {
+	
+	/* Drawing parameters */
+	private static final int HEAD_WIDTH = 250;
+	private static final int HEAD_HEIGHT = 400;
+	private static final int EYE_RADIUS = 50;
+	private static final int MOUTH_WIDTH = 200;
+	private static final int MOUTH_HEIGHT = 50;
+	
+	public void run()	{
+		createHead();
+		createEyes();
+		createMouth();
+	}
+	
+	private void createHead()	{
+		double xcoordinate = getWidth()/2 - HEAD_WIDTH/2;
+		double ycoordinate = getHeight()/2 - HEAD_HEIGHT/2;
+		GRect head = new GRect(xcoordinate, ycoordinate, HEAD_WIDTH, HEAD_HEIGHT);
+		head.setFilled(true);
+		head.setColor(Color.GRAY);
+		add(head);
+	}
+	
+	private void createEyes()	{
+		double leftEyeX = getWidth()/2 - HEAD_WIDTH/4 - EYE_RADIUS/2;
+		double eyeHeight = getHeight()/2 - HEAD_HEIGHT/4 - EYE_RADIUS/2;
+		GOval leftEye = new GOval(leftEyeX, eyeHeight, EYE_RADIUS, EYE_RADIUS);
+		leftEye.setColor(Color.YELLOW);
+		leftEye.setFilled(true);
+		add(leftEye);
+		
+		double rightEyeX = getWidth()/2 + HEAD_WIDTH/4 - EYE_RADIUS/2;
+		//uses same eye height as left eye 
+		GOval rightEye = new GOval(rightEyeX, eyeHeight, EYE_RADIUS, EYE_RADIUS);
+		rightEye.setColor(Color.YELLOW);
+		rightEye.setFilled(true);
+		add(rightEye);
+	}
+	
+	private void createMouth()	{
+		double xcoordinate = getWidth()/2 - MOUTH_WIDTH/2;
+		double ycoordinate = getHeight()/2 + HEAD_HEIGHT/4 - MOUTH_HEIGHT/2;
+		GRect mouth = new GRect(xcoordinate, ycoordinate, MOUTH_WIDTH, MOUTH_HEIGHT);
+		mouth.setFilled(true);
+		mouth.setColor(Color.WHITE);
+		add(mouth);
+	}
+}
