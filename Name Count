@@ -1,0 +1,41 @@
+/*
+ * 
+ */
+
+import acm.program.*;
+import java.util.*;
+
+public class NameCounts extends ConsoleProgram{
+
+	/* Instance variables */
+	Map<String,Integer> nameList = new HashMap<String,Integer>();
+	private String name;
+	
+	public void run()	{
+		println("Enter names. Hit enter without entering anything when list is complete.");
+		gatherNames();
+		printNames();
+	}
+	
+	private void gatherNames()	{
+		while(true)	{
+			name = readLine("Enter name: ");
+			if (name.equals("")) break;
+			Integer count = nameList.get(name);
+			if (count == null)	{
+				count = 1;
+			}	else	{
+				count++;
+			}
+			nameList.put(name, count);
+		}
+	}
+	
+	private void printNames()	{
+		Iterator<String> it = nameList.keySet().iterator();
+		while (it.hasNext())	{
+			String name = it.next();
+			println(name + ": " + nameList.get(name) + " occurences.");
+		}
+	}
+}
