@@ -1,0 +1,51 @@
+* HowUnique.java
+ * 
+ * This program will receive a list of names from the user, store it in an ArrayList, and when the user enters the sentinel value
+ * it will display all the names only once (hence the name of the program).
+ */
+
+import acm.program.*;
+import java.util.*;
+
+public class HowUnique extends ConsoleProgram	{
+	
+	/* Private instance variables */
+	ArrayList<String> nameList = new ArrayList<String>();
+	private static final String SENTINEL = "";
+	
+	public void run()	{
+		println("Enter your list of names, one name at a time.");
+		println("Hit enter (without entering anything) to indicate that your list is finished.");
+		String entry = "";
+		while (true)	{
+			entry = readLine("Enter name: ");
+			if (entry.equals(SENTINEL)) break;
+			storeName(entry);
+		}
+		printResults();
+	}
+	
+	//this will take in a name, and store it in the ArrayList if it does not already exist in the list
+	private void storeName(String entry)	{
+		
+		//this boolean will be set to true if it is found that the name has already been entered
+		boolean isNameAlreadyPresent = false;
+		
+		for (int i = 0; i < nameList.size(); i++)	{
+			
+			//if a name has already been entered (and stored in ArrayList), boolean will be set to true
+			if (nameList.get(i).equals(entry)) 	isNameAlreadyPresent = true;
+		}
+		
+		//the name will only be stored if the boolean is set to false
+		if (!isNameAlreadyPresent)	nameList.add(entry);
+	}
+	
+	//this will print the contents of the ArrayList
+	private void printResults()	{
+		println("Unique name list contains: ");
+		for (int i = 0; i < nameList.size(); i++)	{
+			println(nameList.get(i));
+		}
+	}
+}
