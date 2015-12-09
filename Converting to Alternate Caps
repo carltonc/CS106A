@@ -1,0 +1,27 @@
+/*
+ * This program will accept a string from the user, and then convert it into alternating capital letters like tHiS
+ */
+
+import acm.program.*;
+
+public class ConvertingToAltCaps extends ConsoleProgram		{
+
+	public void run()	{
+		while(true)		{
+			String entry = readLine("Enter a string: ");
+			println(convertToAltCaps(entry));
+		}
+	}
+	
+	private String convertToAltCaps(String entry)	{
+		String result = "";
+		for (int i = 0; i < entry.length(); i++)	{
+			if (i % 2 == 0)	{
+				result += Character.toLowerCase(entry.charAt(i));
+			}	else {
+				result += Character.toUpperCase(entry.charAt(i));
+			}
+		}
+		return result;
+	}
+}
