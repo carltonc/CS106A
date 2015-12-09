@@ -1,0 +1,56 @@
+/*
+ * This program runs the Sieve of Eratosthenes to find prime numbers. It starts at 2 and works up to an upper limit n.
+ * All numbers are set to true, the program will start with 2 and find all the multiples of this number, set those to false, and then move to the next value that is still set as true. It will 
+ * repeat this for all values until all values are either kept true or set to false. All values still set to true are prime numbers.
+ */
+
+import acm.program.*;
+
+public class SieveOfEratosthenes extends ConsoleProgram		{
+	
+	private static final int UPPERLIMIT_N = 1000;
+	private static final int START_N = 2;
+	
+	/* Instance Variables */
+	private int[] numberArray = new int[UPPERLIMIT_N + 1];
+	private boolean[] checklist = new boolean[UPPERLIMIT_N + 1];
+	
+	public void run()	{
+		createArray();
+		findPrimes();
+		printPrimes();
+	}
+	
+	/* This method will set up the value array and boolean array */
+	private void createArray()	{
+		int numberForArray = START_N;
+		for (int i = START_N; i <= UPPERLIMIT_N; i++)		{
+			checklist[i] = true;
+			numberArray[i] = numberForArray;
+			numberForArray++;
+		}
+	}
+	
+	/* This will run through both arrays and operate the Sieve of Eratosthenes */
+	private void findPrimes()	{
+		for (int i = START_N; i <= UPPERLIMIT_N; i++)		{
+			if (checklist[i] == true)	{
+				
+				//starts at first value after the value that is being used
+				for (int j = i + 1; j <= UPPERLIMIT_N; j++) {
+					if (numberArray[j] % numberArray[i] == 0)	{
+						checklist[j] = false;
+					}
+				}
+				
+			}
+		}
+	}
+	
+	/* This will print out all the values that are set as true in the checklist */
+	private void printPrimes()	{
+		for (int i = START_N; i <= UPPERLIMIT_N; i++)	{
+			if (checklist[i])	println(numberArray[i]);
+		}
+	}
+}
