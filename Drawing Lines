@@ -1,0 +1,34 @@
+/*
+ * This program allows the user to draw lines on the canvas,
+ * using a technique called rubber-banding.
+ * Pressing the mouse button sets the starting point for the line.
+ * Dragging the mouse moves the other endpoint around.
+ * Releasing the mouse sets the line in its current position.
+ */
+
+import acm.graphics.*;
+import acm.program.*;
+import java.awt.event.*;
+
+public class DrawingLines extends GraphicsProgram{
+	
+	private GLine line = null;
+	public void run()	{
+		addMouseListeners();
+	}
+	
+	//will create the starting point for the line
+	public void mousePressed(MouseEvent e)	{
+		double initialX = e.getX();
+		double initialY = e.getY();
+		line = new GLine(initialX, initialY, initialX, initialY);
+		add(line);
+	}
+	
+	//will finish the line by freezing it at the end point
+	public void mouseDragged(MouseEvent e)	{
+		double endX = e.getX();
+		double endY = e.getY();
+		line.setEndPoint(endX, endY);
+	}
+}
