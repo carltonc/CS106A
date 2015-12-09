@@ -1,0 +1,49 @@
+/*
+ * This program draws 10 circles with different sizes, positions, 
+ * and colors. 
+ */
+
+import acm.program.*;
+import acm.graphics.*;
+import acm.util.*;
+
+public class RandomCircles extends GraphicsProgram {
+	
+	/* circle parameters */
+	private static final int NCIRCLES = 10;
+	private static final int MIN_RADIUS = 5;
+	private static final int MAX_RADIUS = 50;
+	
+	/* private variables */
+	private RandomGenerator rgen = RandomGenerator.getInstance();
+	private double circleX;
+	private double circleY;
+	
+	public void run()	{
+		for (int i = 0; i < NCIRCLES; i++)	{
+			createCircle();
+		}
+	}
+	
+	private void createCircle()	{
+		double circleRadius = rgen.nextDouble(MIN_RADIUS, MAX_RADIUS);
+		
+		//these two while loops ensure that the circles are completely within the screen
+		while (true)	{
+			circleX = rgen.nextDouble(0, getWidth());
+			if ((circleX + (circleRadius * 2)) < getWidth()) break;
+		}
+		while (true)	{
+			circleY = rgen.nextDouble(0, getHeight());
+			if ((circleY + (circleRadius * 2)) < getHeight()) break;
+		}
+		
+		GOval circle = new GOval(circleX, circleY, circleRadius * 2, circleRadius * 2);
+		circle.setFilled(true);
+		
+		//generates a random color
+		circle.setColor(rgen.nextColor());
+		
+		add(circle);
+	}
+}
