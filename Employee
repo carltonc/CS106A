@@ -1,0 +1,89 @@
+/*
+ * This program creates the employee class that can be used by client programs
+ */
+
+public class Employee {
+	
+	/* Private instance variables */
+	private String employeeName;
+	private int employeeTaxID;
+	private String jobTitle;
+	private boolean isActive;
+	private int salary;
+	
+	/**
+	 * This will create a new Employee object with a name and an ID.
+	 * The name is set as a string, and the ID is set as an int. 
+	 * @param name The employee's name as a string
+	 * @param taxID The employee's ID as an int
+	 */
+	public Employee(String name, int taxID)	{
+		employeeName = name;
+		employeeTaxID = taxID;
+	}
+	
+	/** 
+	 * Clients can use this to get the name of the employee.
+	 * This will return the employee name as a string. 
+	 * @return The name of this employee
+	 */
+	public String getName()	{
+		return employeeName;
+	}
+	
+	/**
+	 * Will return the tax ID as an int. 
+	 * @return The tax ID of this employee
+	 */
+	public int getTaxID()	{
+		return employeeTaxID;
+	}
+	
+	/**
+	 * Can be used to set the job title as a string. 
+	 * @param position The employee's job title as a string
+	 */
+	public void setTitle(String position)	{
+		jobTitle = position;
+	}
+	
+	/**
+	 * Will return the employee's title as a string. 
+	 * @return The job title of this employee
+	 */
+	public String getTitle()	{
+		return jobTitle;
+	}
+	
+	/**
+	 * Can be used to set the status of the employee as a boolean.
+	 * @param status The employee's employment status as a boolean
+	 */
+	public void setStatus (boolean status)	{
+		isActive = status;
+	}
+	
+	/**
+	 *  Will return the employee's employment status as a boolean. 
+	 *  @return This employee's employment status
+	 */
+	public boolean getStatus ()	{
+		return isActive;
+	}
+	
+	/**
+	 * Can be used to set the employee's salary as an int. 
+	 * @param salary The employee's salary as an int
+	 */
+	public void setSalary(int employeeSalary)	{
+		salary = employeeSalary;
+	}
+	
+	/**
+	 * Will return the employee's salary as an int.
+	 * @return This employee's salary
+	 */
+	public int getSalary()	{
+		return salary;
+	}
+}
